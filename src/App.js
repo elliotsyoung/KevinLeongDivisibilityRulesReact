@@ -9,11 +9,47 @@ class App extends Component {
   // This is a function that only runs ONCE when the component
   // is loaded
   //The constructor is where we set up our state variables for the first time
-  constructor(){
+  constructor() {
     super();
+    let currentNumber = 356;
+    const divisible_by_two = (currentNumber % 2 === 0);
+    const divisible_by_three = (currentNumber % 3 === 0);
+    const divisible_by_four = (currentNumber % 4 === 0);
+    const divisible_by_five = (currentNumber % 5 === 0);
+    const divisible_by_six = (currentNumber % 6 === 0);
+    const divisible_by_seven = (currentNumber % 7 === 0);
+    const divisible_by_eight = (currentNumber % 8 === 0);
+    const divisible_by_nine = (currentNumber % 9 === 0);
+    const divisible_by_ten = (currentNumber % 10 === 0);
+    const divisible_by_eleven = (currentNumber % 11 === 0);
+    const divisible_by_twelve = (currentNumber % 12 === 0);
+
+    const digitsString = currentNumber.toString();
+
+    let digits = digitsString.split("");
+
+    digits = digits.map((number) => {
+      return parseInt(number);
+    })
+
+    console.log(digits);
+
+
+    // this.state is an object that keeps track of variables in our react app
     this.state = {
-      currentNumber: 89,
-      divisible_by_two: false
+      digits,
+      currentNumber,
+      divisible_by_two,
+      divisible_by_three,
+      divisible_by_four,
+      divisible_by_five,
+      divisible_by_six,
+      divisible_by_seven,
+      divisible_by_eight,
+      divisible_by_nine,
+      divisible_by_ten,
+      divisible_by_eleven,
+      divisible_by_twelve,
     }
   } // end of constructor
 
@@ -24,23 +60,44 @@ class App extends Component {
     // event.target.preventDefault();
 
     // event.target.value simply means the new number that has been typed into the box
-    const newNumber = event.target.value;
-    const divisible_by_two = (newNumber % 2 === 0);
-    const divisible_by_three = (newNumber % 3 === 0);
-    const divisible_by_four = (newNumber % 4 === 0);
-    const divisible_by_five = (newNumber % 5 === 0);
-    const divisible_by_six = (newNumber % 6 === 0);
-    const divisible_by_seven = (newNumber % 7 === 0);
-    const divisible_by_eight = (newNumber % 8 === 0);
-    const divisible_by_nine = (newNumber % 9 === 0);
-    const divisible_by_ten = (newNumber % 10 === 0);
-    const divisible_by_eleven = (newNumber % 11 === 0);
-    const divisible_by_twelve = (newNumber % 12 === 0);
+    const currentNumber = event.target.value;
+    const divisible_by_two = (currentNumber % 2 === 0);
+    const divisible_by_three = (currentNumber % 3 === 0);
+    const divisible_by_four = (currentNumber % 4 === 0);
+    const divisible_by_five = (currentNumber % 5 === 0);
+    const divisible_by_six = (currentNumber % 6 === 0);
+    const divisible_by_seven = (currentNumber % 7 === 0);
+    const divisible_by_eight = (currentNumber % 8 === 0);
+    const divisible_by_nine = (currentNumber % 9 === 0);
+    const divisible_by_ten = (currentNumber % 10 === 0);
+    const divisible_by_eleven = (currentNumber % 11 === 0);
+    const divisible_by_twelve = (currentNumber % 12 === 0);
+
+
+    const digitsString = currentNumber.toString();
+
+    let digits = digitsString.split("");
+
+    digits = digits.map((number) => {
+      return parseInt(number);
+    })
+
+    console.log(digits);
 
     this.setState({
-      currentNumber: newNumber,
-      //the code below changes the key "divisible_by_two" to the value of the variable "divisble_by_two" that we defined in this function
-      divisible_by_two
+      digits,
+      currentNumber,
+      divisible_by_two,
+      divisible_by_three,
+      divisible_by_four,
+      divisible_by_five,
+      divisible_by_six,
+      divisible_by_seven,
+      divisible_by_eight,
+      divisible_by_nine,
+      divisible_by_ten,
+      divisible_by_eleven,
+      divisible_by_twelve,
     });
 
   }
@@ -48,6 +105,13 @@ class App extends Component {
 
 
   render() {
+
+    const lastDigit = this.state.digits[this.state.digits.length-1];
+
+    const sumOfDigits = this.state.digits.reduce((num, acc) => {
+      return num + acc;
+    },0);
+
     return (
       <div className="App">
         <h1>Kevin's Divisibility Rules Checker</h1>
@@ -59,10 +123,23 @@ class App extends Component {
 
         <h3>This number <span className={this.state.divisible_by_two ? "true-color" : "false-color"}>{this.state.divisible_by_two ? "is" : "is not"}</span> divisible by 2.</h3>
 
+        <p>A number is divisible by two if it ends in an even number.</p>
+
+        <p>The last digit in the number is {this.state.digits[this.state.digits.length-1]}</p>
+
+        <p>{lastDigit} {lastDigit % 2 === 0 ? "is an even number." : "isn't an even number."}</p>
+
+        <hr/>
 
         <h3>This number <span className={this.state.divisible_by_three ? "true-color" : "false-color"}>{this.state.divisible_by_three ? "is" : "is not"}</span> divisible by 3.</h3>
 
+        <p>A number is divisible by three if the sum of the digits is divisible by 3.</p>
 
+        <p>The sum of the digits in the number is {sumOfDigits}</p>
+
+        <p>ADD LOGIC HERE KEVIN</p>
+
+        <hr/>
 
         <h3>This number <span className={this.state.divisible_by_four ? "true-color" : "false-color"}>{this.state.divisible_by_four ? "is" : "is not"}</span> divisible by 4.</h3>
 
