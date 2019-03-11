@@ -108,9 +108,15 @@ class App extends Component {
 
     const lastDigit = this.state.digits[this.state.digits.length-1];
 
-    const sumOfDigits = this.state.digits.reduce((num, acc) => {
+    const sumOfDigits = this.state.digits.reduce((acc, num) => {
       return num + acc;
-    },0);
+    }, 0);
+
+    let sumOfDigitsString = `${this.state.digits[0]}`;
+    for (let index = 1; index < this.state.digits.length; index++) {
+       sumOfDigitsString += ` + ${this.state.digits[index]} ` ;
+
+    }
 
     return (
       <div className="App">
@@ -135,7 +141,7 @@ class App extends Component {
 
         <p>A number is divisible by three if the sum of the digits is divisible by 3.</p>
 
-        <p>The sum of the digits in the number is {sumOfDigits}</p>
+        <p>The sum of the digits in the number is {sumOfDigitsString} = {sumOfDigits}</p>
 
         <p>ADD LOGIC HERE KEVIN</p>
 
